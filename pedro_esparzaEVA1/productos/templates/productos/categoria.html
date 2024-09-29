@@ -1,0 +1,23 @@
+{% extends 'productos/base.html' %}
+
+{% block title %}{{ categoria }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ categoria }}</h2>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4">
+            <a href="{% url 'descripcion_producto' categoria=categoria producto_id=producto.id %}">
+                <div class="card mb-3">
+                    <img src="/static/images/{{ producto.imagen }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">{{ producto.descripcion }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'productos/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2>Seleccione una Categoría</h2>
+    <div class="row justify-content-center">
+        {% for categoria in categorias %}
+        <div class="col-md-2">
+            <a href="{% url 'productos_por_categoria' categoria %}" class="btn btn-primary btn-block mb-3">{{ categoria }}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Botón para ir a la vista de usuario -->
+    <a href="{% url 'usuario' %}" class="btn btn-secondary mb-3">Ver Usuario</a>
+</div>
+{% endblock %}
+
+
+

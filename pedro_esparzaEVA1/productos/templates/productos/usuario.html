@@ -1,0 +1,16 @@
+{% extends 'productos/base.html' %}
+
+{% block title %}Perfil del Usuario{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Usuario: {{ nombre }}</h2>
+    <p>ID: {{ id }}</p>
+    <p>Email: {{ email }}</p>
+
+    <a href="/" class="btn btn-success mt-3">VOLVER</a>
+</div>
+{% endblock %}
+
+
+

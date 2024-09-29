@@ -1,0 +1,15 @@
+{% extends 'productos/base.html' %}
+
+{% block title %}{{ producto.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ producto.nombre }}</h1>
+    <p>{{ producto.descripcion }}</p>
+    <img src="/static/images/{{ producto.imagen }}" alt="{{ producto.nombre }}" class="img-fluid">
+
+    <a href="{% url 'productos_por_categoria' categoria=categoria %}" class="btn btn-primary mt-3">Volver a la categoría</a>
+</div>
+{% endblock %}
+
+

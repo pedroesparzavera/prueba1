@@ -1,0 +1,25 @@
+{% extends 'productos/base.html' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Productos Disponibles</h1>
+    <div class="row">
+        {% for categoria, productos in productos.items %}
+            <div class="col-md-12">
+                <h2>{{ categoria }}</h2>
+                <ul class="list-unstyled">
+                    {% for producto in productos %}
+                        <li class="mb-2">
+                            <strong>{{ producto.nombre }}</strong>: {{ producto.descripcion }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
