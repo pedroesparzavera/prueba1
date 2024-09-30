@@ -1,21 +1,41 @@
 {% extends 'productos/base.html' %}
 
+{% load static %}
+
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h2>Seleccione una Categoría</h2>
+
+
+
+
+<div class="text-center" style="display: flex; justify-content: center; align-items: center;">
+    <div class="rounded-container" style="background-color: #149c16; padding: 10px 20px; border-radius: 15px; display: inline-block; margin: 20px;">
+        <h1 class="custom-title" style="color: white; font-size: 34px; margin: 0;">SELECCIONE UNA CATEGORIA</h1>
+    </div>
+</div>
+
+
+    
     <div class="row justify-content-center">
+        
         {% for categoria in categorias %}
         <div class="col-md-2">
-            <a href="{% url 'productos_por_categoria' categoria %}" class="btn btn-primary btn-block mb-3">{{ categoria }}</a>
+            <a href="{% url 'productos_por_categoria' categoria %}" class="btn btn-primary btn-block mb-3 d-flex flex-column align-items-center">
+                <img src="{% static 'images/categorias/'|add:categoria|add:'.png' %}" alt="{{ categoria }}" class="img-fluid mb-2" style="width: 100px; height: 100px;">
+                <span>{{ categoria }}</span>
+            </a>
         </div>
         {% endfor %}
+        
+        
+        <div class="col-md-2">
+            <a href="{% url 'usuario' %}" class="btn btn-primary btn-block mb-3 d-flex flex-column align-items-center">
+                <img src="{% static 'images/usuario.png' %}" alt="Usuario" class="img-fluid mb-2" style="width: 100px; height: 100px;">
+                <span>USUARIO</span>
+            </a>
+        </div>
     </div>
-    <!-- Botón para ir a la vista de usuario -->
-    <a href="{% url 'usuario' %}" class="btn btn-secondary mb-3">Ver Usuario</a>
 </div>
 {% endblock %}
-
-
 

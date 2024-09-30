@@ -1,15 +1,91 @@
 {% extends 'productos/base.html' %}
 
+{% load static %}
+
+
+
 {% block title %}{{ producto.nombre }}{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1>{{ producto.nombre }}</h1>
-    <p>{{ producto.descripcion }}</p>
-    <img src="/static/images/{{ producto.imagen }}" alt="{{ producto.nombre }}" class="img-fluid">
+<div class="container mt-4 mb-5">
+    <h1 class="text-center">{{ producto.nombre }}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static 'images/' %}{{ producto.imagen }}" alt="{{ producto.nombre }}" class="img-fluid" style="max-height: 400px; object-fit: cover;">
+        </div>
+        <div class="col-md-6">
+            <h5>Descripción:</h5>
+            <p>{{ producto.descripcion }}</p>
+            <div class="text-right d-flex justify-content-between mt-3"> <!-- Alineación horizontal -->
+                <!-- Botón personalizado según la categoría -->
+                {% if categoria == "LAPTOP" %}
+                    <a href="{% url 'productos_por_categoria' categoria=categoria %}" class="btn btn-primary">Volver a Laptops</a>
+                {% elif categoria == "COMPONENTES" %}
+                    <a href="{% url 'productos_por_categoria' categoria=categoria %}" class="btn btn-primary">Volver a Componentes</a>
+                {% elif categoria == "PERIFERICOS" %}
+                    <a href="{% url 'productos_por_categoria' categoria=categoria %}" class="btn btn-primary">Volver a Periféricos</a>
+                {% else %}
+                    <a href="{% url 'productos_por_categoria' categoria=categoria %}" class="btn btn-primary">Volver a la categoría</a>
+                {% endif %}
 
-    <a href="{% url 'productos_por_categoria' categoria=categoria %}" class="btn btn-primary mt-3">Volver a la categoría</a>
+                <a href="{% url 'index' %}" class="btn btn-secondary">Ir al Inicio (Ver Categorías)</a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5>Detalles del Producto:</h5>
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Marca:</strong> {{ producto.marca }}</li>
+                <li class="list-group-item"><strong>Modelo:</strong> {{ producto.modelo }}</li>
+
+                {% if categoria == "LAPTOP" %}
+                    <li class="list-group-item"><strong>Tipo de Procesador:</strong> {{ producto.tipo_procesador }}</li>
+                    <li class="list-group-item"><strong>Velocidad del Procesador:</strong> {{ producto.velocidad_procesador }}</li>
+                    <li class="list-group-item"><strong>Memoria RAM:</strong> {{ producto.memoria_ram }}</li>
+                {% elif categoria == "COMPONENTES" %}
+                    <li class="list-group-item"><strong>Velocidad:</strong> {{ producto.velocidad }}</li>
+                    <li class="list-group-item"><strong>Capacidad:</strong> {{ producto.capacidad }}</li>
+                {% elif categoria == "PERIFERICOS" %}
+                    <li class="list-group-item"><strong>Capacidad:</strong> {{ producto.capacidad }}</li>
+                    <li class="list-group-item"><strong>Tipo de Conexión:</strong> {{ producto.tipo_conexion }}</li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul class="list-group">
+                {% if categoria == "LAPTOP" %}
+                    <li class="list-group-item"><strong>Tipo de Memoria RAM:</strong> {{ producto.tipo_memoria_ram }}</li>
+                    <li class="list-group-item"><strong>Tipo de Pantalla:</strong> {{ producto.tipo_pantalla }}</li>
+                    <li class="list-group-item"><strong>Tarjeta Gráfica:</strong> {{ producto.tarjeta_grafica }}</li>
+                    <li class="list-group-item"><strong>Disco Sólido:</strong> {{ producto.disco_solido }}</li>
+                {% elif categoria == "COMPONENTES" %}
+                    <li class="list-group-item"><strong>Interfaz:</strong> {{ producto.interfaz }}</li>
+                    <li class="list-group-item"><strong>Dimensiones:</strong> {{ producto.dimensiones }}</li>
+                {% elif categoria == "PERIFERICOS" %}
+                    <li class="list-group-item"><strong>Dimensiones:</strong> {{ producto.dimensiones }}</li>
+                    <li class="list-group-item"><strong>DPI (Mouse):</strong> {{ producto.dpi }}</li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul class="list-group">
+                {% if categoria == "LAPTOP" %}
+                    <li class="list-group-item"><strong>Cantidad de Puertos USB:</strong> {{ producto.cantidad_puerto_usb }}</li>
+                    <li class="list-group-item"><strong>Cantidad de Puertos HDMI:</strong> {{ producto.cantidad_puertos_hdmi }}</li>
+                    <li class="list-group-item"><strong>Tipo de Batería:</strong> {{ producto.tipo_bateria }}</li>
+                {% elif categoria == "COMPONENTES" %}
+                    <li class="list-group-item"><strong>Garantía:</strong> {{ producto.garantia }}</li>
+                {% elif categoria == "PERIFERICOS" %}
+                    <li class="list-group-item"><strong>Tipo de Batería:</strong> {{ producto.tipo_bateria }}</li>
+                    <li class="list-group-item"><strong>Garantía:</strong> {{ producto.garantia }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}
-
 

@@ -1,16 +1,28 @@
 {% extends 'productos/base.html' %}
+{% load static %}
 
 {% block title %}Perfil del Usuario{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Usuario: {{ nombre }}</h2>
-    <p>ID: {{ id }}</p>
-    <p>Email: {{ email }}</p>
-
-    <a href="/" class="btn btn-success mt-3">VOLVER</a>
+<div class="container d-flex flex-column align-items-center" style="margin-top: 50px;">
+    <h2 class="text-center">PERFIL DEL USUARIO</h2> 
+    <div class="card" style="width: 350px; height: auto; border: 2px solid #007bff; border-radius: 15px; overflow: hidden; margin-bottom: 20px; padding: 15px;">
+        <div class="d-flex justify-content-center"> 
+            <img src="{% static 'images/Pedro.png' %}" alt="Foto de {{ nombre }}" class="card-img-top" style="max-width: 100%; height: auto; object-fit: contain;">
+        </div>
+        <div class="card-body"> 
+            <h5 class="card-title text-center">Perfil de Usuario</h5> 
+            <div style="text-align: left; margin-top: 15px;"> 
+                <p class="card-text"><strong>Nombre:</strong> {{ nombre }}</p> 
+                <p class="card-text"><strong>ID:</strong> {{ id }}</p> 
+                <p class="card-text"><strong>Email:</strong> {{ email }}</p> 
+                <p class="card-text"><strong>Carrera:</strong> {{ carrera }}</p> 
+                <p class="card-text"><strong>Jornada:</strong> {{ jornada }}</p> 
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'index' %}" class="btn btn-primary">Volver a Categorías</a> 
 </div>
+
+
 {% endblock %}
-
-
-

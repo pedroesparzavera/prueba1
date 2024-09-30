@@ -1,15 +1,23 @@
 {% extends 'productos/base.html' %}
 
+{% load static %}
+
 {% block title %}{{ categoria }}{% endblock %}
+
 {% block content %}
 <div class="container">
-    <h2>{{ categoria }}</h2>
+    <div class="text-center">
+        <h2 class="custom-title">{{ categoria }}</h2> 
+    </div>
+    
     <div class="row">
         {% for producto in productos %}
-        <div class="col-md-4">
-            <a href="{% url 'descripcion_producto' categoria=categoria producto_id=producto.id %}">
-                <div class="card mb-3">
-                    <img src="/static/images/{{ producto.imagen }}" class="card-img-top" alt="{{ producto.nombre }}">
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'descripcion_producto' categoria=categoria producto_id=producto.id %}" class="text-decoration-none">
+                <div class="card shadow-sm" style="height: 100%;">
+                    <div style="height: 200px; overflow: hidden;">
+                        <img src="{% static 'images/' %}{{ producto.imagen }}" class="card-img-top" alt="{{ producto.nombre }}" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ producto.nombre }}</h5>
                         <p class="card-text">{{ producto.descripcion }}</p>
@@ -19,5 +27,23 @@
         </div>
         {% endfor %}
     </div>
+
+    
+    <div class="text-center mt-4">
+        <a href="{% url 'index' %}" class="btn btn-primary">Volver a Categorías</a>
+    </div>
 </div>
+
+
+<style>
+    .custom-title {
+        background-color: #149c16; 
+        color: white; 
+        padding: 10px 20px; 
+        border-radius: 10px; 
+        display: inline-block; 
+        font-size: 34px; 
+    }
+</style>
+
 {% endblock %}

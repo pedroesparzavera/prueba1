@@ -5,21 +5,35 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Productos Disponibles</h1>
+
+    
+    <div class="text-right mb-3">
+        <a href="{% url 'index' %}" class="btn btn-primary">Volver a Categorías</a>
+    </div>
+
     <div class="row">
         {% for categoria, productos in productos.items %}
             <div class="col-md-12">
                 <h2>{{ categoria }}</h2>
-                <ul class="list-unstyled">
+                <div class="row">
                     {% for producto in productos %}
-                        <li class="mb-2">
-                            <strong>{{ producto.nombre }}</strong>: {{ producto.descripcion }}
-                        </li>
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                
+                                <img src="{% static 'images/' %}{{ producto.imagen }}" class="card-img-top img-fluid" alt="{{ producto.nombre }}" style="width: 100%; height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                                    <p class="card-text">{{ producto.descripcion }}</p>
+                                </div>
+                            </div>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         {% endfor %}
     </div>
 </div>
 {% endblock %}
 
-
+</div>
+{% endblock %}
